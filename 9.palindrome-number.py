@@ -56,7 +56,7 @@
 # @lc code=start
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        # Naive implementation O(n)
+        # Naive implementation O(log n)
         x = str(x)
         n = len(x)
 
