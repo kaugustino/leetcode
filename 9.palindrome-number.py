@@ -56,22 +56,29 @@
 # @lc code=start
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        # Naive implementation O(log n)
-        x = str(x)
-        n = len(x)
+        # return str(x) == str(x)[::-1]
 
-        if n == 1:
+        # Solution without str manipulation
+        # O(log n)
+        if x < 0:
+            return False
+        if x < 10:
             return True
+        if x % 10 == 0 and x != 0:
+            return False
 
-        # Rounds down to int
-        mid = n // 2
-        counter = n-1
-        for i in range(mid):
-            if x[i] != x[counter]:
-                return False
-            counter -= 1
+        reverse = 0
+        # Stop when reverse now has greater number of digits
+        # Only go halfway
+        while x > reverse:
+            # Shifting over the last digits in x
+            # when multiplying by 10
+            reverse = (reverse * 10) + (x % 10)
+            # Chop off the last digit in x
+            x = x // 10
 
-        return True        
+        # For odd digit length
+        return x == reverse or x == reverse // 10
 
 # @lc code=end
 
