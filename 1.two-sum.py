@@ -62,11 +62,14 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        # Naive implementation O(n^2)
-        for ai, a in enumerate(nums):
-            for bi, b in enumerate(nums[ai+1:]):
-                if a + b == target:
-                    return [ai, bi+ai+1]
+        # O(n)
+        hash_map = {}
+
+        for idx, elem in enumerate(nums):
+            complement = target - elem
+            if complement in hash_map:
+                return [hash_map[complement], idx]
+            hash_map[elem] = idx
 
 # @lc code=end
 
